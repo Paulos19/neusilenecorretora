@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
+import AdminProductForm from "@/components/AdminProductForm";
 
 export default async function AdminPage() {
     const session = await getServerSession();
@@ -26,36 +27,7 @@ export default async function AdminPage() {
                 {/* Upload Form */}
                 <div className="lg:col-span-5 bg-white p-8 md:p-12 rounded-[2rem] shadow-xl">
                     <h2 className="text-2xl font-medium tracking-tighter uppercase mb-8">Novo Empreendimento</h2>
-                    <form action="/api/products" method="POST" encType="multipart/form-data" className="flex flex-col gap-6">
-                        <div className="flex flex-col gap-2">
-                            <label className="text-xs uppercase tracking-widest font-medium text-[#1A1A1A]/60">Nome (Opcional)</label>
-                            <input type="text" name="title" className="w-full px-4 py-3 bg-zinc-100 rounded-lg outline-none focus:ring-2 font-light" placeholder="Ex: Residencial Vista" />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label className="text-xs uppercase tracking-widest font-medium text-[#1A1A1A]/60">Descrição Detalhada *</label>
-                            <textarea name="description" required rows={4} className="w-full px-4 py-3 bg-zinc-100 rounded-lg outline-none focus:ring-2 font-light resize-none" placeholder="Descrição poética e detalhada do imóvel..."></textarea>
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label className="text-xs uppercase tracking-widest font-medium text-[#1A1A1A]/60">Preço / Condição *</label>
-                            <input type="text" name="price" required className="w-full px-4 py-3 bg-zinc-100 rounded-lg outline-none focus:ring-2 font-light" placeholder="Ex: A partir de R$ 1.500.000,00" />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label className="text-xs uppercase tracking-widest font-medium text-[#1A1A1A]/60">Foto do Empreendimento *</label>
-                            <input type="file" name="image" required accept="image/*" className="w-full text-sm text-[#1A1A1A]/60 file:mr-4 file:py-3 file:px-6 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#1A1A1A] file:text-white hover:file:bg-black transition-all cursor-pointer bg-zinc-100 rounded-lg" />
-                        </div>
-
-                        <div className="flex items-center gap-3 mt-2">
-                            <input type="checkbox" name="isHighlight" id="isHighlight" className="w-5 h-5 accent-[#1A1A1A] cursor-pointer" />
-                            <label htmlFor="isHighlight" className="text-sm tracking-widest uppercase font-medium text-[#1A1A1A]/80 cursor-pointer">Definir como Destaque (Sessão Principal)</label>
-                        </div>
-
-                        <button type="submit" className="w-full bg-[#1A1A1A] text-white py-4 rounded-lg font-medium tracking-widest uppercase text-sm mt-4 hover:bg-black transition-colors">
-                            Adicionar ao Portfólio
-                        </button>
-                    </form>
+                    <AdminProductForm />
                 </div>
 
                 {/* Product List */}
