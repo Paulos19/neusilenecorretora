@@ -23,13 +23,13 @@ export default function HighlightProductSection({ product }: HighlightProductSec
     return (
         <section ref={containerRef} className="relative w-full h-[110vh] bg-[#F3EFE9] flex flex-col lg:flex-row overflow-hidden text-[#000000] border-t border-[#1A1A1A]/10">
 
-            {/* Left Typography Block (Fits inside 70% width) */}
-            <div className="w-full lg:w-[70%] h-[55vh] lg:h-[110vh] flex flex-col justify-center pt-24 lg:pt-0 z-10 relative px-4 lg:px-8">
+            {/* Left Typography Block (Fits inside 70% width on Desktop, full on Mobile) */}
+            <div className="w-full lg:w-[70%] h-[55vh] lg:h-[110vh] flex flex-col justify-center pt-24 lg:pt-0 z-10 relative px-6 md:px-12 lg:px-16">
 
                 {/* Title as a literal Grid / Block - scaled down to fit */}
-                <h2 className="text-[20vw] lg:text-[14vw] font-black leading-[0.8] tracking-[-0.05em] uppercase flex flex-col shrink-0">
+                <h2 className="text-[16vw] sm:text-[12vw] md:text-[10vw] lg:text-[8vw] font-black leading-[0.8] tracking-[-0.05em] uppercase flex flex-col shrink-0 break-words">
                     {words.map((word, index) => (
-                        <span key={index} className="block w-full break-all">
+                        <span key={index} className="block w-full">
                             {word}
                         </span>
                     ))}

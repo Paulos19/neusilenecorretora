@@ -95,10 +95,10 @@ export default function LiaSection() {
                 {/* Video Content */}
                 <div
                     ref={videoWrapperRef}
-                    className="w-full md:w-1/2 flex justify-center md:justify-end transition-all duration-1000 delay-200 ease-out opacity-0 translate-y-24 scale-95 will-change-transform"
+                    className="w-full md:w-1/2 flex justify-center md:justify-end transition-all duration-1000 delay-200 ease-out opacity-0 translate-y-24 scale-95 will-change-transform mt-12 md:mt-0"
                 >
-                    {/* Adjusted size: Constrain by height to always fit the screen */}
-                    <div className="relative h-[85vh] max-h-[800px] aspect-[9/16] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.05)] border border-white/10 p-2 bg-gradient-to-b from-white/5 to-transparent">
+                    {/* Adjusted size: Responsive width on mobile, tall aspect ratio on desktop */}
+                    <div className="relative w-full max-w-[360px] md:max-w-none sm:h-[70vh] md:h-[85vh] md:w-auto max-h-[800px] aspect-[9/16] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-[0_0_50px_rgba(255,255,255,0.05)] border border-white/10 p-2 bg-gradient-to-b from-white/5 to-transparent mx-auto md:mx-0">
                         <div className="relative w-full h-full rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-black isolation-isolate">
                             <video
                                 ref={videoElementRef}

@@ -108,10 +108,30 @@ export default function ProjectsPreviewSection() {
         });
     };
 
-    // Calculate maximum horizontal translation based on number of items and device width
-    // We want the last item to be fully visible at progress = 1
-    // This is a CSS transform percentage mapping
-    const transformX = `translateX(-${scrollProgress * 80}vw)`;
+    // Calculate maximum horizontal translation based on actual track width
+    const trackRef = useRef<HTMLDivElement>(null);
+    const [maxTranslate, setMaxTranslate] = useState(0);
+
+    useEffect(() => {
+        const updateMaxTranslate = () => {
+            if (trackRef.current) {
+                // Total width of the track minus the viewport width to see the end
+                // We add a little padding (e.g. 10vw) so the last item doesn't stick to the very edge
+                const totalWidth = trackRef.current.scrollWidth;
+                const windowWidth = window.innerWidth;
+                const max = totalWidth - windowWidth + (windowWidth * 0.1);
+                setMaxTranslate(Math.max(0, max));
+            }
+        };
+
+        // Initial calculation needed a slight delay to ensure fonts/images render sizes
+        setTimeout(updateMaxTranslate, 100);
+
+        window.addEventListener('resize', updateMaxTranslate);
+        return () => window.removeEventListener('resize', updateMaxTranslate);
+    }, []);
+
+    const transformX = `translateX(-${scrollProgress * maxTranslate}px)`;
 
     return (
         // The section itself is very tall to allow for scrolling
@@ -126,6 +146,7 @@ export default function ProjectsPreviewSection() {
                 {/* Horizontal Scroll Track - transformed based on scroll progress */}
                 <div className="w-full relative flex items-center z-10">
                     <div
+                        ref={trackRef}
                         className="flex gap-16 md:gap-32 px-6 md:px-12 will-change-transform ease-out transition-transform duration-300"
                         style={{ transform: transformX }}
                     >
