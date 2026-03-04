@@ -70,7 +70,7 @@ export default async function Home() {
 
       {secondGrid.length > 0 && (
         <div className="relative z-70 w-full shadow-[0_-20px_50px_rgba(0,0,0,0.6)]">
-          <ProductGridSection title="Obras Concluídas" products={secondGrid} reverseLayout />
+          <ProductGridSection title="Obras·Concluídas" products={secondGrid} reverseLayout />
         </div>
       )}
 
