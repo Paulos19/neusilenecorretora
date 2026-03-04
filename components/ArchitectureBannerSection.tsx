@@ -36,7 +36,7 @@ export default function ArchitectureBannerSection() {
     const getPseudoRandomDelay = (index: number) => {
         // A simple math trick to get a bouncy, scattered array of values between 0 and 1
         const pseudoRandom = Math.abs(Math.sin(index * 13.579));
-        return pseudoRandom * 1200 + 100; // Between 100ms and 1300ms
+        return Math.round(pseudoRandom * 1200) + 100; // Between 100ms and 1300ms, strictly rounded
     };
 
     const renderScrambledText = (text: string, customBaseDelay = 0) => {

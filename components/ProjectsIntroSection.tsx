@@ -55,14 +55,14 @@ export default function ProjectsIntroSection() {
     // Placeholder images (using frames) with rotation, positions, sizes, blurs, and parallax speeds
     // In a real app these would be the actual property thumbnails
     const floatingImages = [
-        { src: "/frames/ezgif-frame-001.png", top: "10%", left: "15%", rotate: -15, width: 280, blur: "blur-[2px]", speed: 1.5, opacity: 0.6 },
-        { src: "/frames/ezgif-frame-020.png", top: "70%", left: "5%", rotate: -5, width: 320, blur: "blur-[5px]", speed: 2, opacity: 0.4 },
-        { src: "/frames/ezgif-frame-040.png", top: "25%", left: "80%", rotate: 20, width: 250, blur: "blur-[3px]", speed: 1, opacity: 0.5 },
-        { src: "/frames/ezgif-frame-060.png", top: "65%", left: "85%", rotate: 10, width: 380, blur: "blur-[1px]", speed: 1.8, opacity: 0.7 },
-        { src: "/frames/ezgif-frame-080.png", top: "8%", left: "55%", rotate: -8, width: 200, blur: "blur-[4px]", speed: 0.8, opacity: 0.4 },
-        { src: "/frames/ezgif-frame-100.png", top: "85%", left: "35%", rotate: 15, width: 300, blur: "blur-[6px]", speed: 1.2, opacity: 0.3 },
-        { src: "/frames/ezgif-frame-120.png", top: "45%", left: "10%", rotate: -25, width: 220, blur: "blur-[3px]", speed: 0.9, opacity: 0.5 },
-        { src: "/frames/ezgif-frame-140.png", top: "50%", left: "75%", rotate: -10, width: 270, blur: "blur-[4px]", speed: 1.5, opacity: 0.4 },
+        { src: "/frames/ezgif-frame-001.png", top: "10%", left: "15%", rotate: -15, width: 280, blur: "blur-[2px]", speed: 1.5, opacity: 0.6, delay: 120 },
+        { src: "/frames/ezgif-frame-020.png", top: "70%", left: "5%", rotate: -5, width: 320, blur: "blur-[5px]", speed: 2, opacity: 0.4, delay: 350 },
+        { src: "/frames/ezgif-frame-040.png", top: "25%", left: "80%", rotate: 20, width: 250, blur: "blur-[3px]", speed: 1, opacity: 0.5, delay: 50 },
+        { src: "/frames/ezgif-frame-060.png", top: "65%", left: "85%", rotate: 10, width: 380, blur: "blur-[1px]", speed: 1.8, opacity: 0.7, delay: 420 },
+        { src: "/frames/ezgif-frame-080.png", top: "8%", left: "55%", rotate: -8, width: 200, blur: "blur-[4px]", speed: 0.8, opacity: 0.4, delay: 210 },
+        { src: "/frames/ezgif-frame-100.png", top: "85%", left: "35%", rotate: 15, width: 300, blur: "blur-[6px]", speed: 1.2, opacity: 0.3, delay: 490 },
+        { src: "/frames/ezgif-frame-120.png", top: "45%", left: "10%", rotate: -25, width: 220, blur: "blur-[3px]", speed: 0.9, opacity: 0.5, delay: 80 },
+        { src: "/frames/ezgif-frame-140.png", top: "50%", left: "75%", rotate: -10, width: 270, blur: "blur-[4px]", speed: 1.5, opacity: 0.4, delay: 290 },
     ];
 
     return (
@@ -87,9 +87,8 @@ export default function ProjectsIntroSection() {
                                 top: img.top,
                                 left: img.left,
                                 width: `${img.width}px`,
-                                // Combine mouse parallax translate with the entrance transform 
-                                // (the absolute pos is based on top/left)
-                                transitionDelay: `${Math.random() * 500}ms`
+                                // Deterministic delay to prevent hydration mismatches
+                                transitionDelay: `${img.delay}ms`
                             }}
                         >
                             <div
